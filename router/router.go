@@ -12,8 +12,6 @@ func NewRouter() *gin.Engine {
 	server := gin.Default()
 	server.Use(Cors())
 	server.Use(Recovery)
-	// server.Use(gin.Recovery())
-
 	group := server.Group("/backend")
 	{
 		uc := new(backend.UserController)
@@ -23,7 +21,13 @@ func NewRouter() *gin.Engine {
 				"port":    "8080",
 			})
 		})
-		group.POST("/user/create", uc.Create)
+		group.POST("/user", uc.Create)
+		group.GET("/users", uc.List)
+		group.DELETE("/user", uc.Delete)
+
+		ac := new(backend.AuthController)
+		group.POST("/login", ac.Login)
+
 	}
 	return server
 }

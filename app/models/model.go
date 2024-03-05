@@ -12,10 +12,10 @@ type CommonTimestampsField struct {
 
 // User 用户模型
 type User struct {
-	BaseModel
+	ID          uint64 `gorm:"column:id;primaryKey;autoIncrement;" json:"id,omitempty"`
 	Username    string `json:"username,omitempty"`
 	Password    string `json:"password,omitempty"`
-	LastLoginIp string `gorm:"column:last_login_ip;"`
+	LastLoginIp string `gorm:"column:last_login_ip;" json:"last_login_ip,omitempty"`
 	CommonTimestampsField
 	UpdatedAt time.Time `gorm:"column:updated_at;index;" json:"created_at,omitempty"`
 }

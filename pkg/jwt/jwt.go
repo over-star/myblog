@@ -37,6 +37,7 @@ func CreateJWT(Id int64, username string) (string, error) {
 			ID:        cast.ToString(Id),
 		},
 		Username: username,
+		Id:       Id,
 	})
 	return claims.SignedString([]byte(secret))
 }

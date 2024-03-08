@@ -23,3 +23,17 @@ type User struct {
 func (User) TableName() string {
 	return "user"
 }
+
+type Category struct {
+	ID    uint64 `gorm:"column:id;primaryKey;autoIncrement;" json:"id,omitempty"`
+	Title string `json:"title,omitempty"`
+	Pid   string `json:"pid,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Link  string `json:"link,omitempty"`
+	Sort  string `json:"sort,omitempty"`
+	CommonTimestampsField
+}
+
+func (Category) TableName() string {
+	return "category"
+}
